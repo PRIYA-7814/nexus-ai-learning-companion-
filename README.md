@@ -1,184 +1,146 @@
-# 🤖 Nexus AI – Student Companion
-
-![React](https://img.shields.io/badge/Frontend-React-blue)
-![Node](https://img.shields.io/badge/Backend-Node.js-green)
-![Express](https://img.shields.io/badge/API-Express-black)
-![AI](https://img.shields.io/badge/AI-Gemini-orange)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-
-An **AI-powered student companion** that helps learners understand concepts, generate notes, practice quizzes, and debug code using artificial intelligence.
-
----
-
-# 🚀 Live Demo
-
-🔗 **Live App:** https://ai-study-buddy--pihu781474.replit.app/quiz
-
-
----
-
-# 📌 Problem Statement
-
-Students often struggle to quickly understand complex concepts, generate notes, and practice questions effectively.
-
-**Nexus AI** solves this problem by providing a **smart AI assistant that acts like a personal tutor.**
-
----
-
-# 🧠 Features
-
-### 🧑‍🏫 AI Tutor
-
-Ask any academic concept and get a clear explanation from AI.
-
-### 📝 Notes Generator
-
-Generate short and clear notes from long study material.
-
-### ❓ Quiz Generator
-
-Create quizzes automatically from topics to help students test their knowledge.
-
-### 💻 Code Debugger
-
-Paste your code and receive AI suggestions for fixing errors.
-
-### 🎯 Interview Preparation
-
-Practice technical and HR interview questions with AI assistance.
-
----
-
-# 🛠 Tech Stack
-
-Frontend
-
-* React.js
-* Axios
-
-Backend
-
-* Node.js
-* Express.js
-
-AI
-
-* Google Gemini API
-
-Tools
-
-* GitHub
-* VS Code
-
----
-
-# 📷 Screenshots
-
-### Home Page
-
-
-<img width="1862" height="892" alt="image" src="https://github.com/user-attachments/assets/7f2f994a-2f32-4cd6-8cb8-8cb5b906bb6f" />
-
-
-
-
-### AI Tutor
-
-
-
-<img width="1890" height="885" alt="image" src="https://github.com/user-attachments/assets/617d4692-e603-41fd-96ef-e5b78c605a6c" />
-
-
-
-
-
-### Interview prep
-
-
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d8565a1a-24df-4a5b-a2bb-aa549dc8ef9d" />
-
-
-
-### Notes generator 
-
-
-
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/745888f0-9753-4441-ad59-15ddd44853ef" />
-
-
-
-### Code debugger 
-
-
-
-<img width="1911" height="885" alt="image" src="https://github.com/user-attachments/assets/da4ea56a-42c2-4a69-8f2a-7a8da16dd7fe" />
-
-
-### Quizes 
-
-
-
-<img width="1911" height="885" alt="image" src="https://github.com/user-attachments/assets/2acbe492-575a-4eee-91e9-45fd46abe76e" />
-
-
-
-
-
-###
-
----
-
-# ⚙️ Installation
-
-### Clone the repository
-
-```bash
-git clone https://github.com/yourusername/nexus-ai-student-companion.git
+# Backend - AI Student Companion
+
+Complete API backend for the AI Student Companion platform with 5 core AI features.
+
+## Features
+- 🎓 **AI Tutor** - Concept explanation with leveled learning
+- 💼 **Interview Prep Bot** - Mock interviews with evaluation
+- 📝 **Notes Generator** - Convert lectures/PDFs to structured notes
+- 🐛 **Code Debugger** - AI-powered code analysis and fixing
+- 📊 **Quiz Generator** - Dynamic quizzes for revision
+
+## Project Structure
+
+```
+backend/
+├── src/
+│   ├── server.js              # Main server entry point
+│   ├── config/
+│   │   └── constants.js       # App-wide constants
+│   ├── middleware/
+│   │   ├── errorHandler.js    # Global error handling
+│   │   └── logger.js          # Request logging
+│   ├── services/
+│   │   └── aiService.js       # OpenAI/Claude API integration
+│   ├── routes/
+│   │   ├── tutor.js
+│   │   ├── interview.js
+│   │   ├── notes.js
+│   │   ├── debugger.js
+│   │   ├── quiz.js
+│   │   └── auth.js
+│   └── controllers/
+│       ├── tutorController.js
+│       ├── interviewController.js
+│       ├── notesController.js
+│       ├── debuggerController.js
+│       ├── quizController.js
+│       └── authController.js
+├── .env.example               # Environment template
+├── .gitignore
+└── package.json
 ```
 
-### Install frontend
+## Setup
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-### Install backend
-
+### 1. Install Dependencies
 ```bash
 cd backend
 npm install
-node server.js
 ```
 
----
+### 2. Configure Environment
+```bash
+cp .env.example .env
+```
 
-# 💡 How It Works
+Edit `.env` with your settings:
+```env
+OPENAI_API_KEY=your_key_here
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/ai-student-companion
+JWT_SECRET=your_secret
+```
 
-1. User asks a question in the AI Tutor.
-2. Frontend sends the request to backend API.
-3. Backend sends prompt to the AI model.
-4. AI generates a response.
-5. Response is displayed in the UI.
+### 3. Run Development Server
+```bash
+npm run dev
+```
 
----
+Server runs on `http://localhost:5000`
 
-# 🚀 Future Improvements
+## API Endpoints
 
-* PDF → Notes generator
-* Voice-based AI tutor
-* Personalized learning recommendations
-* Study progress tracking
+### Health Check
+- `GET /api/health` - API status
 
----
+### Authentication
+- `POST /api/auth/register` - Register user
+- `POST /api/auth/login` - Login user
+- `POST /api/auth/logout` - Logout user
 
-# 👩‍💻 Team life hackers 
+### AI Tutor
+- `POST /api/tutor/explain` - Get concept explanation
+- `GET /api/tutor/history` - Get explanation history
 
+### Interview Prep
+- `GET /api/interview/question` - Get interview question
+- `POST /api/interview/evaluate` - Evaluate answer
+- `GET /api/interview/sessions` - Get session history
 
+### Notes Generator
+- `POST /api/notes/generate` - Generate notes from text
+- `GET /api/notes/list` - Get all notes
+- `GET /api/notes/:id` - Get specific note
+- `DELETE /api/notes/:id` - Delete note
 
----
+### Code Debugger
+- `POST /api/debugger/analyze` - Analyze & debug code
+- `GET /api/debugger/history` - Get debug history
 
-# 📜 License
+### Quiz Generator
+- `GET /api/quiz/question` - Get quiz question
+- `POST /api/quiz/submit` - Submit answer
+- `GET /api/quiz/results` - Get results
 
-This project is licensed under the MIT License.
+## Example Requests
+
+### Explain a Concept
+```bash
+curl -X POST http://localhost:5000/api/tutor/explain \
+  -H "Content-Type: application/json" \
+  -d '{"topic":"Python decorators","level":"intermediate"}'
+```
+
+### Debug Code
+```bash
+curl -X POST http://localhost:5000/api/debugger/analyze \
+  -H "Content-Type: application/json" \
+  -d '{"code":"x = 5\nprint(y)","language":"python"}'
+```
+
+### Generate Notes
+```bash
+curl -X POST http://localhost:5000/api/notes/generate \
+  -H "Content-Type: application/json" \
+  -d '{"text":"Long lecture content here...","format":"bullet"}'
+```
+
+## Next Steps
+- [ ] Connect MongoDB for persistence
+- [ ] Implement JWT authentication middleware
+- [ ] Add database models (User, Note, Quiz, etc.)
+- [ ] Implement rate limiting
+- [ ] Add input validation
+- [ ] Deploy to production
+
+## Technology Stack
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **AI Integration**: OpenAI API
+- **Database**: MongoDB (ready to integrate)
+- **Auth**: JWT + bcryptjs
+- **Validation**: express-validator
+
+## License
+MIT
